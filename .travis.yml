@@ -1,0 +1,9 @@
+language: java
+
+jdk:
+  - openjdk8
+
+script:
+  - javac -d bin -cp src src/name/NameSorter.java
+  - javac -cp "src:test:junit-4.13.2.jar" -d bin/test test/name/*.java
+  - java -cp "bin:test:junit-4.13.2.jar:hamcrest-core-1.3.jar" org.junit.runner.JUnitCore name.FirstNameComparatorTest name.LastNameComparatorTest name.NameTest name.NameSorterTest
