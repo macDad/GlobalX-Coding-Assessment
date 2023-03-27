@@ -4,8 +4,8 @@ package com.globalx.namesorter;
  * The type Name.
  */
 class Name {
-  private String[] givenNames;
-  private String lastName;
+    private final String[] givenNames;
+    private final String lastName;
 
     /**
      * Instantiates a new Name.
@@ -14,9 +14,9 @@ class Name {
      * @param lastName   the last name
      */
     public Name(String[] givenNames, String lastName) {
-   this.givenNames = givenNames;
-   this.lastName = lastName;
-  }
+        this.givenNames = givenNames;
+        this.lastName = lastName;
+    }
 
     /**
      * Get given names string [ ].
@@ -24,8 +24,8 @@ class Name {
      * @return the string [ ]
      */
     public String[] getGivenNames() {
-   return givenNames;
-  }
+        return givenNames;
+    }
 
     /**
      * Gets last name.
@@ -33,8 +33,8 @@ class Name {
      * @return the last name
      */
     public String getLastName() {
-   return lastName;
-  }
+        return lastName;
+    }
 
     /**
      * Gets full name.
@@ -42,8 +42,8 @@ class Name {
      * @return the full name
      */
     public String getFullName() {
-   return String.join(" ", givenNames) + " " + lastName;
-  }
+        return String.join(" ", givenNames) + " " + lastName;
+    }
 
 
 }

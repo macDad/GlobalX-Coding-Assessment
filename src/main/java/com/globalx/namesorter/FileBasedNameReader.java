@@ -11,7 +11,7 @@ import java.util.List;
  * The type File based name reader.
  */
 class FileBasedNameReader implements NameReader {
-    private String inputFileName;
+    private final String inputFileName;
 
     /**
      * Instantiates a new File based name reader.
