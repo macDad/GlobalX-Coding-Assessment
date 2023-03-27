@@ -27,7 +27,6 @@ public class NameSorterApp {
     try {
       NameSorterController controller = new NameSorterController(reader, sorter, writer);
       List<Name> sortedNames = controller.sortNames();
-      System.out.println("Sorted names:");
       sortedNames.stream().map(Name::getFullName).forEach(System.out::println);
     } catch (IOException e) {
             System.err.println("Error reading or writing file: " + e.getMessage());
