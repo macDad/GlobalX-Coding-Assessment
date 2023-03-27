@@ -43,7 +43,7 @@ class Name {
    * @return the full name
    */
   public String getFullName() {
-    return String.join(" ", givenNames) + " " + lastName;
+    return "%s %s".formatted(String.join(" ", givenNames), lastName);
   }
 
   @Override

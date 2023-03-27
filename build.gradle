@@ -22,6 +22,5 @@ test {
     useJUnitPlatform()
 }
 application {
-    // Define the main class for the application.
     mainClass = 'com.globalx.namesorter.NameSorterApp'
 }

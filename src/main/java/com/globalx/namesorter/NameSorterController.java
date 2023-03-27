@@ -27,7 +27,6 @@ public class NameSorterController {
    *
    * @return the list
    * @throws IOException the io exception
-   * @param outputFileName the output file name
    */
   public List<Name> sortNames() throws IOException {
     List<Name> names = reader.readNames();

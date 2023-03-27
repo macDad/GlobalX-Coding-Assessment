@@ -13,6 +13,13 @@ class SimpleNameSorter implements NameSorter {
     return names;
   }
 
+  /**
+   * Compare given names int.
+   *
+   * @param n1 the n 1
+   * @param n2 the n 2
+   * @return the int
+   */
   private int compareGivenNames(Name n1, Name n2) {
     String[] n1GivenNames = n1.getGivenNames();
     String[] n2GivenNames = n2.getGivenNames();
