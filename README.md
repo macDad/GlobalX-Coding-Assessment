@@ -103,21 +103,26 @@ Here's a UML diagram of the project's classes and their relationships:
 #### flowchart
 
 ```mermaid
-graph LR
-    A[Start] --> B(Input File)
+graph TD
+    A[Start] --> B(Input File Validation)
+    B -->|File validation failed| H[End]
     B --> C(Create Name List)
+    C -->|File reader errors| H
     C --> D(Process Names)
     D --> E(Sort Names)
     E --> F(Output Sorted Names)
-    F --> G[End]
+    F -->|File writer errors| H
+    F --> G(Output Sorted Names)
+    G --> H
 ```
 
 ---
 
 ## Built With
 
-* Java
-* JUnit
+* Java - 8+
+* JUnit - 5
+* Gradle - 8
 
 ## Authors
 
