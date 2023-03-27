@@ -71,42 +71,45 @@ javac -cp "src:test:junit-4.13.2.jar" -d bin/test test/name/*.java
 java -cp "bin:test:junit-4.13.2.jar:hamcrest-core-1.3.jar" org.junit.runner.JUnitCore name.FirstNameComparatorTest name.LastNameComparatorTest name.NameTest name.NameSorterTest
 ```
 
+### UML Diagram
+
 ---
 
-## UML Diagram
+#### Sequence Diagram
 
 Here's a UML diagram of the project's classes and their relationships:
 
 ```mermaid
-sequenceDiagram
+    sequenceDiagram
     participant User
-    participant NameSorter
-    User->>+NameSorter: sortNames(inputFile, outputFile)
-    NameSorter->>-Name: new Name(fullName)
-    loop for each name in inputFile
-        NameSorter->>-Name: getFirstName()
-        NameSorter->>-Name: getLastName()
-        NameSorter->>-Name: getGivenNames()
-        NameSorter->>+List<Name>: add(name)
-    end
-    NameSorter->>+List<Name>: sort()
-    loop for each name in List<Name>
-        NameSorter->>-Name: getFirstName()
-        NameSorter->>-Name: getLastName()
-        NameSorter->>-Name: getGivenNames()
-        NameSorter->>+FileWriter: writeToFile(name)
-    end
-    NameSorter-->>-User: sorted list of names
+    participant NameSorterApp
+    participant NameSorterController
+    participant FileBasedNameReader
+    participant SimpleNameSorter
+    participant FileBasedNameWriter
+
+    User ->>+ NameSorterApp: Execute with input file name
+    NameSorterApp ->>+ NameSorterController: Create with dependencies
+    NameSorterController ->>+ FileBasedNameReader: Read names from input file
+    FileBasedNameReader ->>- NameSorterController: Names
+    NameSorterController ->>+ SimpleNameSorter: Sort names
+    SimpleNameSorter ->>- NameSorterController: Sorted names
+    NameSorterController ->>+ FileBasedNameWriter: Write sorted names to output file
+    FileBasedNameWriter ->>- NameSorterController: Confirmation of write
+    NameSorterController ->>- NameSorterApp: Return sorted names
+    NameSorterApp -->>- User: Display sorted names
 ```
+
+#### flowchart
 
 ```mermaid
 graph LR
-A[Start] --> B(Input File)
-B --> C(Create Name List)
-C --> D(Process Names)
-D --> E(Sort Names)
-E --> F(Output Sorted Names)
-F --> G[End]
+    A[Start] --> B(Input File)
+    B --> C(Create Name List)
+    C --> D(Process Names)
+    D --> E(Sort Names)
+    E --> F(Output Sorted Names)
+    F --> G[End]
 ```
 
 ---
