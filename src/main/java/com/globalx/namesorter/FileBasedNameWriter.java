@@ -17,11 +17,11 @@ class FileBasedNameWriter implements NameWriter {
      */
     @Override
     public void writeNames(List<Name> names, String outputFileName) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName));
-        for (Name name : names) {
-            writer.write(name.getFullName());
-            writer.newLine();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName))) {
+            for (Name name : names) {
+                writer.write(name.getFullName());
+                writer.newLine();
+            }
         }
-        writer.close();
     }
 }
