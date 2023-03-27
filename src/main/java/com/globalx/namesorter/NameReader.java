@@ -7,11 +7,11 @@ import java.util.List;
  * The interface Name reader.
  */
 interface NameReader {
-    /**
-     * Read names list.
-     *
-     * @return the list
-     * @throws IOException the io exception
-     */
-    List<Name> readNames() throws IOException;
+  /**
+   * Read names list.
+   *
+   * @return the list
+   * @throws IOException the io exception
+   */
+  List<Name> readNames() throws IOException;
 }

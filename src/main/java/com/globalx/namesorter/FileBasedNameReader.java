@@ -13,20 +13,15 @@ import java.util.List;
 class FileBasedNameReader implements NameReader {
     private final String inputFileName;
 
-    /**
-     * Instantiates a new File based name reader.
-     *
-     * @param inputFileName the input file name
-     */
-    public FileBasedNameReader(String inputFileName) {
-        this.inputFileName = inputFileName;
-    }
+  /**
+   * Instantiates a new File based name reader.
+   *
+   * @param inputFileName the input file name
+   */
+  public FileBasedNameReader(String inputFileName) {
+    this.inputFileName = inputFileName;
+  }
 
-
-    /**
-     * @return
-     * @throws IOException
-     */
     @Override
     public List<Name> readNames() throws IOException {
         List<Name> names = new ArrayList<>();

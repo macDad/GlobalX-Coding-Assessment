@@ -2,27 +2,25 @@ package com.globalx.namesorter;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.IntStream;
 
-/**
- * The type Simple name sorter.
- */
+/** The type Simple name sorter. */
 class SimpleNameSorter implements NameSorter {
 
-    /**
-     * @param names the names
-     * @return
-     */
-    @Override
-    public List<Name> sortNames(List<Name> names) {
-        names.sort(Comparator.comparing(Name::getLastName).thenComparing((n1, n2) -> {
-            for (int i = 0; i < Math.min(n1.getGivenNames().length, n2.getGivenNames().length); i++) {
-                int cmp = n1.getGivenNames()[i].compareTo(n2.getGivenNames()[i]);
-                if (cmp != 0) {
-                    return cmp;
-                }
-            }
-            return 0;
-        }));
-        return names;
-    }
+  @Override
+  public List<Name> sortNames(List<Name> names) {
+    names.sort(Comparator.comparing(Name::getLastName).thenComparing(this::compareGivenNames));
+    return names;
+  }
+
+  private int compareGivenNames(Name n1, Name n2) {
+    String[] n1GivenNames = n1.getGivenNames();
+    String[] n2GivenNames = n2.getGivenNames();
+    int minLength = Math.min(n1GivenNames.length, n2GivenNames.length);
+    return IntStream.range(0, minLength)
+        .map(i -> n1GivenNames[i].compareTo(n2GivenNames[i]))
+        .filter(cmp -> cmp != 0)
+        .findFirst()
+        .orElse(0);
+  }
 }
